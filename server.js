@@ -52,8 +52,8 @@ app.get('/', function (req, res) {
 });
 
 app.get('/error', function (req, res) {
-	console.error('GET /error : Responding with HTTP error 500 : Internal Server Error.');
-	res.status(500).send('Boom; HTTP error code 500. Internal server error.');
+	console.error('GET /error : Responding with HTTP status code 500 : Internal Server Error.');
+	res.status(500).send('Boom; HTTP status code code 500. Internal server error.');
 });
 
 // **** Request Event Handlers: End ****

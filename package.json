@@ -1,0 +1,32 @@
+{
+  "name": "node-js-express-template",
+  "version": "1.0.0",
+  "description": "An Express.js Web server project template",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tom-weatherhead/node-js-express-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tom-weatherhead/node-js-express-template/issues"
+  },
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express"
+  ],
+  "dependencies": {
+    "express": "latest",
+    "nodemon": "latest"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Tom Weatherhead",
+    "url": "https://github.com/tom-weatherhead"
+  }
+}

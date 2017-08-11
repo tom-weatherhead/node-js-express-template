@@ -2,8 +2,8 @@
 // Tom Weatherhead - August 1, 2017
 
 // require('rootpath')();
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
 // **** Server Listen Port Configuration: Begin ****
 
@@ -11,8 +11,8 @@ var app = express();
 // const serverListenPort = 3000;
 
 // Set the server listen port: Method 2: Factor the data (the port number) out of the code:
-var config = require('./config.json');
-let serverListenPort = config.serverListenPort;	// 3000;
+const config = require('./config.json');
+const serverListenPort = config.serverListenPort || 3000;
 
 // **** Server Listen Port Configuration: End ****
 
@@ -61,7 +61,13 @@ app.get('/error', function (req, res) {
 // **** Start the Server: Begin ****
 
 var server = app.listen(serverListenPort, function () {
-	console.log('The Express.js server is listening at http://' + server.address().address + ':' + server.address().port);
+	let host = server.address().address;
+
+	if (host === '::') {
+		host = 'localhost';
+	}
+
+	console.log('The Express.js server is listening at http://%s:%s (protocol %s)', host, server.address().port, server.address().family);
 });
 
 // **** Start the Server: End ****

@@ -12,20 +12,48 @@
     "url": "https://github.com/tom-weatherhead/node-js-express-template/issues"
   },
   "scripts": {
+    "lint": "grunt eslint",
+    "mocha": "grunt mochaTest",
+    "nsp": "grunt nsp",
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test",
+    "watch": "grunt watch"
+  },
+  "dependencies": {
+    "express": "latest",
+    "fs-extra": "latest",
+    "jquery": "latest",
+    "nodemon": "latest"
+  },
+  "devDependencies": {
+    "babel-cli": "latest",
+    "babel-preset-env": "latest",
+    "chai": "latest",
+    "chai-files": "latest",
+    "chai-http": "latest",
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-eslint": "latest",
+    "grunt-mocha-test": "latest",
+    "grunt-nsp": "latest",
+    "mocha": "latest"
   },
   "engineStrict": true,
   "engines": {
     "node": ">=8.0.0"
   },
   "keywords": [
-    "express"
+    "chai",
+    "eslint",
+    "express",
+    "grunt",
+    "jquery",
+    "mocha",
+    "node",
+    "nsp",
+    "upload"
   ],
-  "dependencies": {
-    "express": "latest",
-    "nodemon": "latest"
-  },
   "license": "MIT",
   "author": {
     "name": "Tom Weatherhead",

@@ -3,6 +3,8 @@
 // An example of a simple Express.js Web server.
 // Tom Weatherhead - August 1, 2017
 
+'use strict';
+
 // require('rootpath')();
 const express = require('express');
 const path = require('path');
@@ -34,6 +36,8 @@ const app = express();
 
 // **** Cross-Origin Resource Sharing: End ****
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 // **** Request Event Handlers: Begin ****
 
 app.get('/', function (req, res) {
@@ -59,7 +63,7 @@ app.get('/notfound', function (req, res) {
 app.get('/servererror', function (req, res) {
 	console.error('GET /servererror : Responding with HTTP status code 500 : Internal server error.');
 	// res.status(500).send('Boom; HTTP status code code 500 : Internal server error.');
-	res.status(500).send('Boom.');
+	res.status(500).send('Boom; HTTP status code code 500: Internal server error.');
 });
 
 app.get('/teapot', function (req, res) {
@@ -73,10 +77,10 @@ app.get('/teapot', function (req, res) {
 	// Or res.status(418).send('The teapot is responding to the request to brew coffee...');
 });
 
-app.get('/jquery.min.js', function (req, res) {
-	// res.redirect('https://code.jquery.com/jquery-3.2.1.min.js');
-	res.sendFile(path.join(__dirname, 'node_modules', 'jquery', 'dist', 'jquery.min.js'));
-});
+// app.get('/jquery.min.js', function (req, res) {
+//	res.redirect('https://code.jquery.com/jquery-3.2.1.min.js');
+//	res.sendFile(path.join(__dirname, 'node_modules', 'jquery', 'dist', 'jquery.min.js'));
+// });
 
 app.get('/script.js', function (req, res) {
 	res.sendFile(path.join(__dirname, 'script.js'));

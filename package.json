@@ -2,7 +2,7 @@
   "name": "node-js-express-template",
   "version": "1.0.0",
   "description": "An Express.js Web server project template",
-  "main": "server.js",
+  "main": "app.js",
   "homepage": "https://github.com/tom-weatherhead/node-js-express-template#readme",
   "repository": {
     "type": "git",
@@ -21,15 +21,12 @@
   },
   "dependencies": {
     "express": "latest",
-    "fs-extra": "latest",
-    "jquery": "latest",
     "nodemon": "latest"
   },
   "devDependencies": {
     "babel-cli": "latest",
     "babel-preset-env": "latest",
     "chai": "latest",
-    "chai-files": "latest",
     "chai-http": "latest",
     "grunt": "latest",
     "grunt-cli": "latest",
@@ -51,8 +48,7 @@
     "jquery",
     "mocha",
     "node",
-    "nsp",
-    "upload"
+    "nsp"
   ],
   "license": "MIT",
   "author": {

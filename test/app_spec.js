@@ -2,6 +2,8 @@
 
 // Use chai and chai-http. See https://groundberry.github.io/development/2016/12/10/testing-express-with-mocha-and-chai.html and our repo test-express-mocha-chai-perello
 
+'use strict';
+
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 

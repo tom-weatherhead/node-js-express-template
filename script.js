@@ -5,6 +5,8 @@
 // If this file is loaded by index.html without using a route in server.js, the Web browser encounters the following error:
 // - "The resource from “http://localhost:3000/script.js” was blocked due to MIME type mismatch (X-Content-Type-Options: nosniff)."
 
+'use strict';
+
 $('#btnClickMe').click(function () {		// eslint-disable-line no-undef
 	console.log('#btnClickMe click');
 	alert('Thanks.');						// eslint-disable-line no-alert

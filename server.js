@@ -3,6 +3,8 @@
 // An example of a simple Express.js Web server.
 // Tom Weatherhead - August 1, 2017
 
+'use strict';
+
 // require('rootpath')();
 const app = require('./app');
 

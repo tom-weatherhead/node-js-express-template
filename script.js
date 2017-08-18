@@ -7,7 +7,37 @@
 
 'use strict';
 
+function getJSONRequest (url) {
+	console.log('#btnClickMe click; calling $.get() ...');
+	// See https://api.jquery.com/jquery.getjson/
+	$.ajax({																	// eslint-disable-line no-undef
+		dataType: 'json',
+		url: url,
+		success: function (result) {
+			const message = 'getJSONRequest() sent to \'' + url + '\' succeeded; result is:';
+
+			console.log(message, result);
+			alert(message + ' ' + JSON.stringify(result));						// eslint-disable-line no-alert
+		},
+		error: function (error) {
+			const message = 'getJSONRequest() sent to \'' + url + '\' failed; error is:';
+
+			console.error(message, error.status, error.statusText);
+			alert(message + ' ' + error.status + ' ' + error.statusText);		// eslint-disable-line no-alert
+		}
+	});
+}
+
 $('#btnClickMe').click(function () {		// eslint-disable-line no-undef
 	console.log('#btnClickMe click');
 	alert('Thanks.');						// eslint-disable-line no-alert
+});
+
+$('#btnJSONSuccess').click(function () {		// eslint-disable-line no-undef
+	getJSONRequest('json');
+});
+
+$('#btnJSONFailure').click(function () {		// eslint-disable-line no-undef
+	// getJSONRequest('servererror');
+	getJSONRequest('teapot');
 });

@@ -27,20 +27,20 @@ module.exports = function (grunt) {
 		},
 		nsp: {
 			package: gruntfile
-		},
-		watch: {
-			js: {
-				files: ['*.js'],
-				tasks: 'build'
-			},
-			pkg: {
-				files: packageJsonFilename,
-				tasks: 'build'
-			},
-			readme: {
-				files: 'README.md',
-				tasks: 'build'
-			}
+		// },
+		// watch: {		// npm i --save-dev grunt-contrib-watch
+			// js: {
+			// 	files: ['*.js'],
+			// 	tasks: 'build'
+			// },
+			// pkg: {
+			// 	files: packageJsonFilename,
+			// 	tasks: 'build'
+			// },
+			// readme: {
+			// 	files: 'README.md',
+			// 	tasks: 'build'
+			// }
 		}
 	});
 
@@ -48,9 +48,10 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-eslint');
 	grunt.loadNpmTasks('grunt-mocha-test');
 	grunt.loadNpmTasks('grunt-nsp');
-	grunt.loadNpmTasks('grunt-contrib-watch');
+	// grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Aliases
 	grunt.registerTask('test', ['eslint', 'mochaTest', 'nsp']);
+	// grunt.registerTask("build", ["concat", "babel"]);	// See avoidwork/filesize.js/Gruntfile.js
 	grunt.registerTask('default', ['test']);
 };

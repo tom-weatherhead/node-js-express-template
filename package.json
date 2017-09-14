@@ -16,27 +16,13 @@
     "mocha": "grunt mochaTest",
     "nsp": "grunt nsp",
     "start": "nodemon server.js",
-    "test": "grunt test",
-    "watch": "grunt watch"
+    "test": "grunt test"
   },
   "dependencies": {
     "express": "latest",
     "nodemon": "latest"
   },
-  "devDependencies": {
-    "babel-cli": "latest",
-    "babel-preset-env": "latest",
-    "chai": "latest",
-    "chai-http": "latest",
-    "grunt": "latest",
-    "grunt-cli": "latest",
-    "grunt-contrib-watch": "latest",
-    "grunt-eslint": "latest",
-    "grunt-mocha-test": "latest",
-    "grunt-nsp": "latest",
-    "mocha": "latest"
-  },
-  "engineStrict": true,
+  "engine-strict": true,
   "engines": {
     "node": ">=8.0.0"
   },
@@ -54,5 +40,14 @@
   "author": {
     "name": "Tom Weatherhead",
     "url": "https://github.com/tom-weatherhead"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "grunt": "^1.0.1",
+    "grunt-eslint": "^20.1.0",
+    "grunt-mocha-test": "^0.13.2",
+    "grunt-nsp": "^2.3.1",
+    "mocha": "^3.5.3"
   }
 }

@@ -1,4 +1,4 @@
-﻿// node-js-express-template/app.js
+﻿// node-js-express-template/src/app.js
 
 // An example of a simple Express.js Web server.
 // Tom Weatherhead - August 1, 2017
@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
 	console.log('GET / : Sending the file index.html');
-	res.sendFile(path.join(__dirname, 'index.html'));
+	res.sendFile(path.join(__dirname, '..', 'client_side', 'html', 'index.html'));
 });
 
 app.get('/json', function (req, res) {
@@ -83,7 +83,7 @@ app.get('/teapot', function (req, res) {
 // });
 
 app.get('/script.js', function (req, res) {
-	res.sendFile(path.join(__dirname, 'script.js'));
+	res.sendFile(path.join(__dirname, '..', 'client_side', 'js', 'script.js'));
 });
 
 // **** Request Event Handlers: End ****

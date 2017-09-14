@@ -1,4 +1,4 @@
-// node-js-express-template/server.js
+// node-js-express-template/src/server.js
 
 // An example of a simple Express.js Web server.
 // Tom Weatherhead - August 1, 2017
@@ -6,9 +6,9 @@
 'use strict';
 
 // require('rootpath')();
-const app = require('./app');
+const app = require('..');
 
-const config = require('./config');			// I.e. ./config.json
+const config = require('../config/config');			// I.e. ./config.json
 
 const serverListenPort = config.serverListenPort || 3000;
 

@@ -1,6 +1,7 @@
 'use strict';
 
 // npm packages that are not entirely necessary:
+// - babel-cli
 // - babel-preset-env
 // - grunt-cli (unless it is needed by grunt-contrib-watch; the eslint, mochaTest, and nsp tasks run fine without it)
 // To reinstall them: $ npm i --save-dev babel-preset-env grunt-cli

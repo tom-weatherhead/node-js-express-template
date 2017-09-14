@@ -1,3 +1,5 @@
+// node-js-express-template/script.js
+
 // To disable an eslint warning or error for an entire file, use this syntax: /* eslint no-alert: 0 */
 
 // See https://stackoverflow.com/questions/34764287/turning-off-eslint-rule-for-a-specific-file
@@ -8,9 +10,10 @@
 'use strict';
 
 function getJSONRequest (url) {
-	console.log('#btnClickMe click; calling $.get() ...');
+	// This is essentially an augmented version of jQuery's AJAX $.getJSON()
 	// See https://api.jquery.com/jquery.getjson/
 	$.ajax({																	// eslint-disable-line no-undef
+
 		dataType: 'json',
 		url: url,
 		success: function (result) {

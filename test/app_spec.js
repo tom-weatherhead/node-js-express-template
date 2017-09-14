@@ -7,14 +7,14 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-const app = require('../app');
+const app = require('..');
 
 chai.use(chaiHttp);
 
 const expect = chai.expect;
 
 describe('App', function () {
-	describe('/get', function () {
+	describe('GET /', function () {
 		it('responds with status 200', function (done) {
 			chai.request(app)
 				.get('/')
@@ -27,7 +27,7 @@ describe('App', function () {
 		});
 	});
 
-	describe('/get notfound', function () {
+	describe('GET /notfound', function () {
 		it('responds with status 404', function (done) {
 			chai.request(app)
 				.get('/notfound')
@@ -40,21 +40,8 @@ describe('App', function () {
 		});
 	});
 
-	describe('/get servererror', function () {
-		it('responds with status 500', function (done) {
-			chai.request(app)
-				.get('/servererror')
-				.end(function (err, res) {
-					expect(err).to.not.be.null;		// eslint-disable-line no-unused-expressions
-					expect(res).to.have.status(500);
-					// expect(res.text).to.equal('somevalue');
-					done();
-				});
-		});
-	});
-
-	describe('/get teapot', function () {
-		it('responds with status 200', function (done) {
+	describe('GET /teapot', function () {
+		it('responds with status 418', function (done) {
 			chai.request(app)
 				.get('/teapot')
 				.end(function (err, res) {
@@ -65,6 +52,19 @@ describe('App', function () {
 
 					expect(res).to.have.status(418);
 					expect(res.text).to.equal('I\'m a teapot');
+					done();
+				});
+		});
+	});
+
+	describe('GET /servererror', function () {
+		it('responds with status 500', function (done) {
+			chai.request(app)
+				.get('/servererror')
+				.end(function (err, res) {
+					expect(err).to.not.be.null;		// eslint-disable-line no-unused-expressions
+					expect(res).to.have.status(500);
+					// expect(res.text).to.equal('somevalue');
 					done();
 				});
 		});

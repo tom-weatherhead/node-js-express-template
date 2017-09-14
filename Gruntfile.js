@@ -4,7 +4,7 @@
 // - babel-cli
 // - babel-preset-env
 // - grunt-cli (unless it is needed by grunt-contrib-watch; the eslint, mochaTest, and nsp tasks run fine without it)
-// To reinstall them: $ npm i --save-dev babel-preset-env grunt-cli
+// To reinstall them: $ npm i --save-dev babel-cli babel-preset-env grunt-cli
 
 module.exports = function (grunt) {
 	const packageJsonFilename = 'package.json';
@@ -15,7 +15,9 @@ module.exports = function (grunt) {
 		eslint: {
 			target: [
 				'*.js',
-				'test/*_spec.js'
+				'client_side/js/*.js',
+				'src/*.js',
+				'test/*.js'
 			]
 		},
 		mochaTest: {

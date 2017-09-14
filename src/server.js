@@ -8,7 +8,7 @@
 // require('rootpath')();
 const app = require('..');
 
-const config = require('../config/config');			// I.e. ./config.json
+const config = require('../config/config');					// I.e. ../config/config.json
 
 const serverListenPort = config.serverListenPort || 3000;
 

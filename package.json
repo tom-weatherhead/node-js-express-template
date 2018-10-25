@@ -1,53 +1,46 @@
 {
-  "name": "node-js-express-template",
-  "version": "1.0.0",
-  "description": "An Express.js Web server project template",
-  "main": "src/app.js",
-  "homepage": "https://github.com/tom-weatherhead/node-js-express-template#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tom-weatherhead/node-js-express-template.git"
-  },
-  "bugs": {
-    "url": "https://github.com/tom-weatherhead/node-js-express-template/issues"
-  },
-  "scripts": {
-    "lint": "grunt eslint",
-    "mocha": "grunt mochaTest",
-    "nsp": "grunt nsp",
-    "start": "nodemon src/server.js",
-    "test": "grunt test"
-  },
-  "dependencies": {
-    "express": "^4.15.4",
-    "nodemon": "^1.11.0"
-  },
-  "devDependencies": {
-    "chai": "^4.1.2",
-    "chai-http": "^3.0.0",
-    "grunt": "^1.0.1",
-    "grunt-eslint": "^20.1.0",
-    "grunt-mocha-test": "^0.13.2",
-    "grunt-nsp": "^2.3.1",
-    "mocha": "^3.5.3"
-  },
-  "engine-strict": true,
-  "engines": {
-    "node": ">=8.0.0"
-  },
-  "keywords": [
-    "chai",
-    "eslint",
-    "express",
-    "grunt",
-    "jquery",
-    "mocha",
-    "node",
-    "nsp"
-  ],
-  "license": "MIT",
-  "author": {
-    "name": "Tom Weatherhead",
-    "url": "https://github.com/tom-weatherhead"
-  }
+	"name": "node-js-express-template",
+	"description": "An Express.js Web server project template",
+	"private": true,
+	"version": "0.0.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tom-weatherhead/metatrader-test-web-service.git"
+	},
+	"homepage": "https://github.com/tom-weatherhead/metatrader-test-web-service#readme",
+	"bugs": {
+		"url": "https://github.com/tom-weatherhead/metatrader-test-web-service/issues"
+	},
+	"main": "src/app",
+	"scripts": {
+		"lint": "grunt eslint",
+		"mocha": "grunt mochaTest",
+		"start": "nodemon src/server",
+		"test": "grunt"
+	},
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"cors": "^2.8.4",
+		"express": "^4.16.4",
+		"nodemon": "^1.18.4"
+	},
+	"devDependencies": {
+		"chai": "^4.2.0",
+		"chai-http": "^4.2.0",
+		"grunt": "^1.0.3",
+		"grunt-eslint": "^21.0.0",
+		"grunt-mocha-test": "^0.13.3",
+		"mocha": "^5.2.0"
+	},
+	"engineStrict": true,
+	"engines": {
+		"node": ">=8.0.0"
+	},
+	"keywords": [
+		"Express.js",
+		"MongoDB",
+		"REST"
+	],
+	"author": "Tom Weatherhead <null@2hrd4u.org> (https://httpbin.org/status/418)",
+	"license": "MIT"
 }

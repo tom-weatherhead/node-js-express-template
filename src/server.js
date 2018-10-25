@@ -1,16 +1,20 @@
-// node-js-express-template/src/server.js
+// metatrader/test-web-service/src/server.js
 
-// An example of a simple Express.js Web server.
-// Tom Weatherhead - August 1, 2017
+// A MongoDB REST Web service.
+
+// For information about "npm link" and the "bin" section of the package.json file, see:
+// http://blog.npmjs.org/post/118810260230/building-a-simple-command-line-tool-with-npm
 
 'use strict';
 
 // require('rootpath')();
-const app = require('..');
+// const app = require('..');
+const app = require('..')('nop');
 
-const config = require('../config/config');					// I.e. ../config/config.json
+// const config = require('../config/config');			// I.e. ./config.json
 
-const serverListenPort = config.serverListenPort || 3000;
+// const serverListenPort = config.serverListenPort || 3000;
+const serverListenPort = 80;
 
 // Start the server:
 

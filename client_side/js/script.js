@@ -36,10 +36,10 @@ $('#btnClickMe').click(function () {										// eslint-disable-line no-undef
 });
 
 $('#btnJSONSuccess').click(function () {									// eslint-disable-line no-undef
-	getJSONRequest('json');
+	getJSONRequest('http://localhost');
 });
 
 $('#btnJSONFailure').click(function () {									// eslint-disable-line no-undef
 	// getJSONRequest('servererror');
-	getJSONRequest('teapot');
+	getJSONRequest('http://localhost/teapot/123');
 });

@@ -1,12 +1,8 @@
+// metatrader/test-web-service/Gruntfile.js
+
 'use strict';
 
-// npm packages that are not entirely necessary:
-// - babel-cli
-// - babel-preset-env
-// - grunt-cli (unless it is needed by grunt-contrib-watch; the eslint, mochaTest, and nsp tasks run fine without it)
-// To reinstall them: $ npm i --save-dev babel-cli babel-preset-env grunt-cli
-
-module.exports = function (grunt) {
+module.exports = grunt => {
 	const packageJsonFilename = 'package.json';
 	const gruntfile = grunt.file.readJSON(packageJsonFilename);
 
@@ -25,36 +21,55 @@ module.exports = function (grunt) {
 				reporter: 'spec'
 			},
 			test: {
-				src: ['test/*_spec.js']
+				src: [
+					'test/*_spec.js'
+				]
 			}
 		},
-		nsp: {
-			package: gruntfile
-		// },
-		// watch: {		// npm i --save-dev grunt-contrib-watch
-			// js: {
-			// 	files: ['*.js'],
-			// 	tasks: 'build'
-			// },
-			// pkg: {
-			// 	files: packageJsonFilename,
-			// 	tasks: 'build'
-			// },
-			// readme: {
-			// 	files: 'README.md',
-			// 	tasks: 'build'
-			// }
-		}
+		run: {
+			/*
+			options: {
+				jest: {
+					testEnvironment: 'jsdom',
+					testMatch: [
+						'<rootDir>/test/jest/*_jest.js'
+					]
+				}
+			},
+			*/
+			npm_test_jest: {
+				exec: 'npm run test-jest --silent'
+			}
+		} /* ,
+		watch: {
+			js: {
+				files: [
+					'*.js',
+					'src/*.js',
+					'test/** /*.js' // TODO: Delete the space in this string.
+				],
+				tasks: 'build'
+			},
+			pkg: {
+				files: 'package.json',
+				tasks: 'build'
+			},
+			readme: {
+				files: 'README.md',
+				tasks: 'build'
+			}
+		} */
 	});
 
 	// Tasks
 	grunt.loadNpmTasks('grunt-eslint');
-	grunt.loadNpmTasks('grunt-mocha-test');
-	grunt.loadNpmTasks('grunt-nsp');
 	// grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-mocha-test');
+	// grunt.loadNpmTasks('grunt-run');
 
 	// Aliases
-	grunt.registerTask('test', ['eslint', 'mochaTest', 'nsp']);
-	// grunt.registerTask("build", ["concat", "babel"]);	// See avoidwork/filesize.js/Gruntfile.js
+	grunt.registerTask('test', ['eslint', 'mochaTest' /* , 'run:npm_test_jest' */ ]);
+	// grunt.registerTask('test', ['eslint']);
+
 	grunt.registerTask('default', ['test']);
 };

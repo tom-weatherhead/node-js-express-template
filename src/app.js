@@ -1,93 +1,142 @@
-﻿// node-js-express-template/src/app.js
+﻿// metatrader/test-web-service/src/app.js
 
-// An example of a simple Express.js Web server.
-// Tom Weatherhead - August 1, 2017
+// A REST database Web service.
 
 'use strict';
 
-// require('rootpath')();
-const express = require('express');
-const path = require('path');
+module.exports = databaseClientType => {
+	const express = require('express');
+	const bodyParser = require('body-parser');
 
-const app = express();
+	// TODO? : Use a factory method to create the database client based on a parameter (e.g. param === 'npm' || param === 'mongo')
+	// const databaseClient = require('./mongodb')();
+	// const databaseClient = require('./nopdb')();
+	const databaseClient = databaseClientType === 'mongo' ? require('./mongodb') : require('./nopdb');
 
-// **** Cross-Origin Resource Sharing: Begin ****
+	// const assert = require('assert');
 
-// See https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
-// See https://enable-cors.org/server_expressjs.html
+	const app = express();
 
-// General:
+	app.use(bodyParser.json());
 
-// If we uncomment the block below, Mocha will complain that "the header contains invalid characters".
+	// **** Begin CORS ****
+	// For information about CORS (Cross-Origin Resource Sharing), see https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+	// To enable CORS, run "npm i -S cors" and uncomment the next two lines:
+	const cors = require('cors');
 
-// app.use(function(req, res, next) {
-// 	res.header("Access-Control-Allow-Origin", "*");
-// 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-// 	next();
-// });
+	app.use(cors());
+	// **** End CORS ****
 
-// Minimal:
 
-// app.use(function(req, res, next) {
-// 	res.header("Access-Control-Allow-Origin", "null");
-// 	res.header("GET");
-// 	next();
-// });
+	//app.disable('etag');	// Prevent HTTP 304 Not Modified. See https://stackoverflow.com/questions/18811286/nodejs-express-cache-and-304-status-code
 
-// **** Cross-Origin Resource Sharing: End ****
+	const router = express.Router();				// eslint-disable-line new-cap
 
-app.use(express.static(path.join(__dirname, 'public')));
+	// 1) Create (the C in CRUD)
 
-// **** Request Event Handlers: Begin ****
+	// See e.g. https://stackoverflow.com/questions/7172784/how-to-post-json-data-with-curl-from-terminal-commandline-to-test-spring-rest :
 
-app.get('/', function (req, res) {
-	console.log('GET / : Sending the file index.html');
-	res.sendFile(path.join(__dirname, '..', 'client_side', 'html', 'index.html'));
-});
+	// **** BEGIN stackoverflow.com excerpt ****
 
-app.get('/json', function (req, res) {
-	var result = {
-		message: 'GitHub!',
-		number: 343
-	};
+	// You need to set your content-type to application/json. But -d sends the Content-Type application/x-www-form-urlencoded, which is not accepted on Spring's side.
 
-	console.log('GET /json : Responding with JSON result:', result);
-	res.json(result);
-});
+	// Looking at the curl man page, I think you can use -H:
 
-app.get('/notfound', function (req, res) {
-	console.error('GET /notfound : Responding with HTTP status code 404 : Not found.');
-	res.status(404).send('Boom; HTTP status code code 404 : Not found.');
-});
+	// -H "Content-Type: application/json"
 
-app.get('/servererror', function (req, res) {
-	console.error('GET /servererror : Responding with HTTP status code 500 : Internal server error.');
-	// res.status(500).send('Boom; HTTP status code code 500 : Internal server error.');
-	res.status(500).send('Boom; HTTP status code code 500: Internal server error.');
-});
+	// Full example:
 
-app.get('/teapot', function (req, res) {
-	// See https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-	// See https://en.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol
-	// See https://httpstatuses.com/418
-	// See https://stackoverflow.com/questions/24018008/is-there-a-server-that-implements-http-status-code-418
-	// See especially https://www.google.com/teapot
-	console.log('GET /teapot : Responding with HTTP status code 418 : I\'m a teapot.');
-	res.sendStatus(418);
-	// Or res.status(418).send('The teapot is responding to the request to brew coffee...');
-});
+	// curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://localhost:3000/api/login
 
-// app.get('/jquery.min.js', function (req, res) {
-//	res.redirect('https://code.jquery.com/jquery-3.2.1.min.js');
-//	res.sendFile(path.join(__dirname, 'node_modules', 'jquery', 'dist', 'jquery.min.js'));
-// });
+	// (-H is short for --header, -d for --data)
 
-app.get('/script.js', function (req, res) {
-	res.sendFile(path.join(__dirname, '..', 'client_side', 'js', 'script.js'));
-});
+	// Note that -X POST is optional if you use -d, as the -d flag implies a POST request.
 
-// **** Request Event Handlers: End ****
+	// **** END stackoverflow.com excerpt ****
 
-module.exports = app;
+	// https://stackoverflow.com/questions/11625519/how-to-access-the-request-body-when-posting-using-node-js-and-express
+
+	// Test via: curl -H "Content-Type: application/json" -X POST -d '{"username":"xyz","password":"xyz"}' http://localhost:3000/u/
+
+	// Test via: curl -H "Content-Type: application/json" -X POST -d '{"id":1,"name":"North Carolina State University at Raleigh","numUndergraduateStudents":22925,"percentWhite":74.67,"percentBlack":6.5,"percentHispanic":4.47,"percentAsian":5.37,"percentAmericanNative":0.42,"percentPacificIslander":0.06,"percentMultipleRaces":3.51,"percentNonResidentAlien":3.27,"percentUnknown":1.72,"shortName":"NCSU Raleigh"}' http://localhost:3000/u/
+
+	router.post('/', (req, res) => {
+		databaseClient.onCreate(req, res);
+	});
+
+	// 2) Read (the R in CRUD)
+
+	// Test via curl -X "GET" http://localhost:3000/u/ or simply curl http://localhost:3000/u/
+
+	// ? To get the value of a URL parameter (e.g. ".../?name=foo"), refer to req.query.name (which should equal 'foo').
+	// See https://stackoverflow.com/questions/17007997/how-to-access-the-get-parameters-after-in-express
+
+	router.get('/', (req, res) => {
+		databaseClient.onReadAll(req, res);
+	});
+
+	// Test via curl -X "GET" http://localhost:3000/u/1 or simply curl http://localhost:3000/u/1
+
+	router.get('/:id', (req, res) => {
+		databaseClient.onReadOne(req, res);
+	});
+
+	// 3) Update (the U in CRUD)
+
+	// Test via: curl -H "Content-Type: application/json" -X PUT -d '{"id":1,"name":"Buckwheat University","numUndergraduateStudents":22925,"percentWhite":74.67,"percentBlack":6.5,"percentHispanic":4.47,"percentAsian":5.37,"percentAmericanNative":0.42,"percentPacificIslander":0.06,"percentMultipleRaces":3.51,"percentNonResidentAlien":3.27,"percentUnknown":1.72,"shortName":"NCSU Raleigh"}' http://localhost:3000/u/1
+
+	router.put('/:id', (req, res) => {
+		// HTTP method PUT: If the resource exists, replace it; otherwise, create it.
+		// See https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods
+		databaseClient.onUpdateUsingPut(req, res);
+	});
+
+	// See https://docs.mongodb.com/manual/reference/method/db.collection.updateOne/
+	// See https://stackoverflow.com/questions/38883285/error-the-update-operation-document-must-contain-atomic-operators-when-running
+
+	// Just pass in the changed fields, not necessarily the entire object.
+
+	// Test via: curl -H "Content-Type: application/json" -X PATCH -d '{"name": "Bar University"}' http://localhost:3000/u/2
+
+	router.patch('/:id', (req, res) => {
+		databaseClient.onUpdateUsingPatch(req, res);
+	});
+
+	// 4) Delete (the D in CRUD)
+
+	// Test via: curl -X "DELETE" http://localhost:3000/u/1
+
+	router.delete('/:id', (req, res) => {
+		databaseClient.onDelete(req, res);
+	});
+
+	// Other HTTP methods
+
+	router.options('/', (req, res) => {
+		databaseClient.onOptions(req, res);
+	});
+
+	router.head('/', (req, res) => {
+		databaseClient.onHead(req, res);
+	});
+
+	router.trace('/', (req, res) => {
+		databaseClient.onTrace(req, res);
+	});
+
+	/*
+	// Supporting HTTP CONNECT may be overkill.
+	// See https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/CONNECT
+	router.connect('/', (req, res) => {
+		databaseClient.onConnect(req, res);
+	});
+	*/
+
+	app.use('/', router);
+
+	return app;
+};
+
+// module.exports = app;
 
 // End of File.

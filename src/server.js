@@ -1,6 +1,6 @@
-// metatrader/test-web-service/src/server.js
+// node-js-express-template/src/server.js
 
-// A MongoDB REST Web service.
+// A REST Web service with a database back end.
 
 // For information about "npm link" and the "bin" section of the package.json file, see:
 // http://blog.npmjs.org/post/118810260230/building-a-simple-command-line-tool-with-npm
@@ -8,13 +8,14 @@
 'use strict';
 
 // require('rootpath')();
-// const app = require('..');
+
+// The parameter 'nop' indicated the database back end that we wish to use.
 const app = require('..')('nop');
 
-// const config = require('../config/config');			// I.e. ./config.json
+const config = require('../config/config');			// I.e. ./config.json
 
-// const serverListenPort = config.serverListenPort || 3000;
-const serverListenPort = 80;
+const serverListenPort = config.serverListenPort || 3000;
+// const serverListenPort = 80;
 
 // Start the server:
 

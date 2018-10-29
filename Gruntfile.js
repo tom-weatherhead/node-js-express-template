@@ -1,4 +1,4 @@
-// metatrader/test-web-service/Gruntfile.js
+// node-js-express-template/Gruntfile.js
 
 'use strict';
 

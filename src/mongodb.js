@@ -1,4 +1,4 @@
-// metatrader/test-web-service/src/mongodb.js
+// node-js-express-template/src/mongodb.js
 
 // A MongoDB REST Web service.
 

@@ -1,15 +1,14 @@
 {
 	"name": "node-js-express-template",
 	"description": "An Express.js Web server project template",
-	"private": true,
 	"version": "0.0.0",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/tom-weatherhead/metatrader-test-web-service.git"
+		"url": "git+https://github.com/tom-weatherhead/node-js-express-template.git"
 	},
-	"homepage": "https://github.com/tom-weatherhead/metatrader-test-web-service#readme",
+	"homepage": "https://github.com/tom-weatherhead/node-js-express-template#readme",
 	"bugs": {
-		"url": "https://github.com/tom-weatherhead/metatrader-test-web-service/issues"
+		"url": "https://github.com/tom-weatherhead/node-js-express-template/issues"
 	},
 	"main": "src/app",
 	"scripts": {
@@ -30,7 +29,8 @@
 		"grunt": "^1.0.3",
 		"grunt-eslint": "^21.0.0",
 		"grunt-mocha-test": "^0.13.3",
-		"mocha": "^5.2.0"
+		"mocha": "^5.2.0",
+		"tiny-httptest": "^1.0.22"
 	},
 	"engineStrict": true,
 	"engines": {

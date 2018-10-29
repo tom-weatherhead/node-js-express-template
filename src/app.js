@@ -1,6 +1,6 @@
-﻿// metatrader/test-web-service/src/app.js
+﻿// node-js-express-template/src/app.js
 
-// A REST database Web service.
+// A REST Web service with a database back end.
 
 'use strict';
 

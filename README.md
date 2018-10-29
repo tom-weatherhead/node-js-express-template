@@ -1,13 +1,15 @@
 # node-js-express-template
+
+[![build status](https://secure.travis-ci.org/tom-weatherhead/node-js-express-template.svg)](http://travis-ci.org/tom-weatherhead/node-js-express-template)
+
 An Express.js Web server project template.
 
-To install this server:
+To install dependencies:
 
-$ npm install
+$ npm i
 
 To run the server:
 
 $ npm start
 
-Then an HTTP GET request to http://localhost:3000 will return some JSON data,
-and an HTTP GET request to http://localhost:3000/error will elicit an Internal Server Error (HTTP status code 500).
+Then an HTTP GET request to http://localhost:3000/ will return some JSON data.

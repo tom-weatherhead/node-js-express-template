@@ -5,6 +5,7 @@
 'use strict';
 
 module.exports = databaseClientType => {
+// module.exports = () => {
 	const express = require('express');
 	const bodyParser = require('body-parser');
 
@@ -113,7 +114,9 @@ module.exports = databaseClientType => {
 	// Other HTTP methods
 
 	router.options('/', (req, res) => {
+		// console.log('app.js : router.options()');
 		databaseClient.onOptions(req, res);
+		// res.status(500).send('Boom!');
 	});
 
 	router.head('/', (req, res) => {
@@ -121,6 +124,7 @@ module.exports = databaseClientType => {
 	});
 
 	router.trace('/', (req, res) => {
+		// console.log('app.js : router.trace()');
 		databaseClient.onTrace(req, res);
 	});
 

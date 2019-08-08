@@ -13,29 +13,31 @@
 	},
 	"main": "src/app",
 	"scripts": {
+		"build": "npm i && grunt",
+		"clean": "rm -rf node_modules && rm -f package-lock.json",
 		"lint": "grunt eslint",
 		"mocha": "grunt mochaTest",
 		"start": "nodemon src/server",
 		"test": "grunt"
 	},
 	"dependencies": {
-		"body-parser": "^1.18.3",
-		"cors": "^2.8.4",
-		"express": "^4.16.4",
-		"nodemon": "^1.18.4"
+		"body-parser": "^1.19.0",
+		"cors": "^2.8.5",
+		"express": "^4.17.1",
+		"nodemon": "^1.19.1"
 	},
 	"devDependencies": {
 		"chai": "^4.2.0",
-		"chai-http": "^4.2.0",
-		"grunt": "^1.0.3",
-		"grunt-eslint": "^21.0.0",
+		"chai-http": "^4.3.0",
+		"grunt": "^1.0.4",
+		"grunt-eslint": "^22.0.0",
 		"grunt-mocha-test": "^0.13.3",
-		"mocha": "^5.2.0",
-		"tiny-httptest": "^1.0.22"
+		"mocha": "^6.2.0",
+		"tiny-httptest": "^1.1.0"
 	},
 	"engineStrict": true,
 	"engines": {
-		"node": ">=8.0.0"
+		"node": ">= 8"
 	},
 	"keywords": [
 		"Express.js",
